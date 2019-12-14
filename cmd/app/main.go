@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "github.com/dantheman213/gps-test/pkg/gps"
+    "github.com/dantheman213/gps-usb-serial-reader/pkg/gps"
     "github.com/tarm/serial"
     "log"
     "strings"
