@@ -14,6 +14,7 @@ type Options struct {
 	PrintNMEAToCLI *bool
 	SerialPort *int
 	Timeout *int
+	Verbose *bool
 	WriteCSVFilePath *string
 	WriteGPSCoordsFilePath *string
 	WriteKMLFilePath * string
@@ -31,6 +32,7 @@ func parseFlags() *Options {
 	o.PrintNMEAToCLI = flag.Bool("print-nmea", false, "Print NMEA messages to standard out.")
 	o.SerialPort = flag.Int("port", 0, "Set the serial port to connect.")
 	o.Timeout = flag.Int("timeout", 60, "Set the timeout (seconds) before disconnecting on error or inactivity.")
+	o.Verbose = flag.Bool("verbose", false, "Extra information provided in standard out.")
 	o.WriteCSVFilePath = flag.String("write-csv", "", "Write timestamp, GPS coordinates, and NMEA message(s) for location to CSV file at path provided.")
 	o.WriteGPSCoordsFilePath = flag.String("write-gps", "", "Write raw GPS coordinates to file at path provided.")
 	o.WriteKMLFilePath = flag.String("write-kml", "", "Write Google Maps / Earth KML format as a waypoint workflow to file at path provided.")
