@@ -1,6 +1,6 @@
 # gps-usb-serial-reader
 
-Read NMEA GPS signals from most common USB serial GPS devices on the market. Easily receive latitude and longitude as decimal degrees (DD) for use in the OS or in your own custom code.
+Auto-detect, plot, and map with common GPS USB serial devices. Read NMEA GPS signals. Receive latitude and longitude as decimal degrees (DD) in multiple formats for use in a variety of applications.
 
 ## Getting Started
 

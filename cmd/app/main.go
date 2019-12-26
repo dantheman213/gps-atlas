@@ -1,8 +1,10 @@
 package main
 
+import "os"
+
 func main() {
 	o := parseFlags()
-	if *o.Help == true {
+	if len(os.Args) == 1 || *o.Help == true {
 		printHelpSheet()
 	}
 }

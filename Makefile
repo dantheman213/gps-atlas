@@ -1,6 +1,6 @@
-BIN_FILENAME = gps-plotter
+BIN_FILENAME = gps-atlas
 ifeq ($(OS),Windows_NT)
-	BIN_FILENAME = gps-plotter.exe
+	BIN_FILENAME = gps-atlas.exe
 endif
 
 .PHONY: all build
