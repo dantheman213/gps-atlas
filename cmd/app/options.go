@@ -23,7 +23,7 @@ type Options struct {
 	WriteNMEAFilePath *string
 }
 
-func parseFlags() *Options {
+func parseOptions() *Options {
 	o := Options{}
 
 	o.AutoDetect = flag.Bool("autodetect", true, "Auto detect the serial port and baud rate for the connected GPS device. Partially or fully disabled if baud rate and/or port is manually set.")

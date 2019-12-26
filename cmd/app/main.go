@@ -3,7 +3,7 @@ package main
 import "os"
 
 func main() {
-	o := parseFlags()
+	o := parseOptions()
 	if len(os.Args) == 1 || *o.Help == true {
 		printHelpSheet()
 	}

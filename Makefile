@@ -1,9 +1,13 @@
-BIN_FILENAME = gps-atlas
+BASE_NAME = gps-atlas
+BIN_FILENAME = ""
+
 ifeq ($(OS),Windows_NT)
-	BIN_FILENAME = gps-atlas.exe
+	BIN_FILENAME = ${BASE_NAME}.exe
+else
+	BIN_FILENAME = ${BASE_NAME}
 endif
 
-.PHONY: all build
+.PHONY: all build clean deps
 
 all: build
 
