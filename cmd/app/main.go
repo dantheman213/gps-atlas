@@ -1,8 +1,8 @@
 package main
 
 func main() {
-	c := parseFlags()
-	if *c.Help == true {
+	o := parseFlags()
+	if *o.Help == true {
 		printHelpSheet()
 	}
 }

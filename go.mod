@@ -1,7 +1,3 @@
-module github.com/dantheman213/gps-plotter
+module github.com/dantheman213/gps-usb-serial-reader
 
 go 1.13
-
-require (
-
-)
