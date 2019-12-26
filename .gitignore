@@ -1,9 +1,7 @@
-# OS stuff
 .DS_Store
 [Tt]humbs.db
 
-# IDE stuff
 .idea/
 
-# Project stuff
 bin/
+*.log

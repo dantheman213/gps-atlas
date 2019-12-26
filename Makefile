@@ -1,6 +1,6 @@
-BIN_FILENAME = export
+BIN_FILENAME = gps-plotter
 ifeq ($(OS),Windows_NT)
-	BIN_FILENAME = export.exe
+	BIN_FILENAME = gps-plotter.exe
 endif
 
 .PHONY: all build
@@ -8,7 +8,7 @@ endif
 all: build
 
 build:
-	go build -o bin/$(BIN_FILENAME) cmd/app/main.go
+	CGO_ENABLED=0 GO111MODULE=on go build -installsuffix "static" -o bin/$(BIN_FILENAME) $$(find cmd/app/*.go)
 
 clean:
 	@echo Cleaning bin/ directory... && \
