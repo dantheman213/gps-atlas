@@ -8,16 +8,18 @@ import (
 type Options struct {
 	AutoDetect *bool
 	BaudRate *int
+	Daemon *bool
 	Help *bool
 	PlotInterval *int
 	PrintGPSCoordsToCLI *bool
 	PrintNMEAToCLI *bool
 	SerialPort *int
+	Silent *bool
 	Timeout *int
 	Verbose *bool
 	WriteCSVFilePath *string
 	WriteGPSCoordsFilePath *string
-	WriteKMLFilePath * string
+	WriteKMLFilePath *string
 	WriteNMEAFilePath *string
 }
 
@@ -26,11 +28,13 @@ func parseFlags() *Options {
 
 	o.AutoDetect = flag.Bool("autodetect", true, "Auto detect the serial port and baud rate for the connected GPS device. Partially or fully disabled if baud rate and/or port is manually set.")
 	o.BaudRate = flag.Int("baudrate", 9600, "Set the baud rate for the serial port.")
+	o.Daemon = flag.Bool("daemon", false, "Run as a background task.")
 	o.Help = flag.Bool ("help", false, "Print help sheet.")
 	o.PlotInterval = flag.Int("interval", 30, "Set the plot interval (seconds) for returning a GPS location from device.")
 	o.PrintGPSCoordsToCLI = flag.Bool("print-gps", false, "Print the GPS coordinates to standard out.")
 	o.PrintNMEAToCLI = flag.Bool("print-nmea", false, "Print NMEA messages to standard out.")
 	o.SerialPort = flag.Int("port", 0, "Set the serial port to connect.")
+	o.Silent = flag.Bool("silent", false, "No output will be sent to standard out. Cannot be used with flags that write to standard out.")
 	o.Timeout = flag.Int("timeout", 60, "Set the timeout (seconds) before disconnecting on error or inactivity.")
 	o.Verbose = flag.Bool("verbose", false, "Extra information provided in standard out.")
 	o.WriteCSVFilePath = flag.String("write-csv", "", "Write timestamp, GPS coordinates, and NMEA message(s) for location to CSV file at path provided.")
