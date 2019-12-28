@@ -13,3 +13,6 @@ TODO
 * https://www.gpsinformation.org/dale/nmea.htm
 
 * https://www.sparkfun.com/datasheets/GPS/NMEA%20Reference%20Manual1.pdf
+
+* https://brandidowns.com/2018/08/05/decoding-nmea-sentences/
+
