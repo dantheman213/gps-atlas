@@ -28,7 +28,7 @@ type Options struct {
 func parseOptions() *Options {
 	o := Options{}
 
-	o.AutoDetect = flag.Bool("autodetect", true, "Auto detect the serial port and baud rate for the connected GPS device. Partially or fully disabled if baud rate and/or port is manually set.")
+	o.AutoDetect = flag.Bool("autodetect", true, "Auto detect the serial port and baud rate for the connected GPS device. Disabled if baud rate or port is manually set.")
 	o.BaudRate = flag.Int("baudrate", -1, "Set the baud rate for the serial port.")
 	o.Daemon = flag.Bool("daemon", false, "Run as a background task.")
 	o.Help = flag.Bool ("help", false, "Print help sheet.")
@@ -46,8 +46,15 @@ func parseOptions() *Options {
 
 	flag.Parse()
 
-	if *o.AutoDetect && (*o.BaudRate > -1 && *o.SerialPort > -1) {
+	// Disable auto-detect if either baud rate or port is set
+	if *o.AutoDetect && (*o.BaudRate > -1 || *o.SerialPort > -1) {
 		*o.AutoDetect = false
+	}
+
+	// Set a default option if no option is set
+	if !*o.PrintGPSCoordsToCLI && !*o.PrintNMEAToCLI && *o.WriteCSVFilePath == "" && *o.WriteGPSCoordsFilePath == "" && *o.WriteKMLFilePath == "" && *o.WriteNMEAFilePath == "" {
+		fmt.Println("Warning: no print or write option has been set; printing GPS coordinates")
+		*o.PrintGPSCoordsToCLI = true
 	}
 
 	return &o
@@ -66,19 +73,19 @@ func checkOptionSanity(o *Options) error {
 	}
 
 	if !*o.AutoDetect && *o.SerialPort < 0 {
-		return errors.New("serial port cannot be negative")
+		return errors.New("serial port must be valid")
 	}
 
 	if !*o.AutoDetect && *o.BaudRate <= 0 {
-		return errors.New("baud rate cannot be less than 0")
+		return errors.New("baud rate must be valid")
 	}
 
 	if *o.Silent && *o.Verbose {
-		return errors.New("Silent and Verbose flags cannot both be set")
+		return errors.New("cannot have both silent and verbose flags cannot both be set")
 	}
 
 	if *o.Silent && (*o.PrintNMEAToCLI || *o.PrintGPSCoordsToCLI) {
-		return errors.New("can't be silent and paired with a flag that increases standard out verbosity")
+		return errors.New("can't be silent and paired with a flag that increases verbosity")
 	}
 
 	if *o.Timeout < 0 {

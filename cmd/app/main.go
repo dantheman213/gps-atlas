@@ -14,5 +14,6 @@ func main() {
 
 	if err := checkOptionSanity(o); err != nil {
 		fmt.Printf("Parse exception: %s", err)
+		os.Exit(1)
 	}
 }
