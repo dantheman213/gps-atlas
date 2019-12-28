@@ -27,7 +27,13 @@ type Options struct {
 	WriteNMEAFilePath *string
 }
 
-func ParseOptions() *Options {
+var opts *Options
+
+func GetOptions() *Options {
+	return opts
+}
+
+func ParseOptions() {
 	o := Options{}
 
 	o.AutoDetect = flag.Bool("autodetect", true, "Auto detect the serial port and baud rate for the connected GPS device. Disabled if baud rate or port is manually set.")
@@ -49,7 +55,7 @@ func ParseOptions() *Options {
 	o.WriteNMEAFilePath = flag.String("write-nmea", "", "Write raw NMEA messages to file at path provided.")
 
 	flag.Parse()
-	return &o
+	opts = &o
 }
 
 func PrintHelpSheet() {

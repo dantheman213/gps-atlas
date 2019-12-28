@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	o := controller.ParseOptions()
-
+	controller.ParseOptions()
+	o := controller.GetOptions()
 	if *o.Help == true {
 		controller.PrintHelpSheet()
 		os.Exit(0)
@@ -24,5 +24,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	controller.Start(o)
+	controller.Start()
 }
