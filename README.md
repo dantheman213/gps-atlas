@@ -11,3 +11,5 @@ TODO
 ## Reference
 
 * https://www.gpsinformation.org/dale/nmea.htm
+
+* https://www.sparkfun.com/datasheets/GPS/NMEA%20Reference%20Manual1.pdf
