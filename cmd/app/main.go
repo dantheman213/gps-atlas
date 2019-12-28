@@ -2,18 +2,27 @@ package main
 
 import (
 	"fmt"
+	"github.com/dantheman213/gps-usb-serial-reader/pkg/controller"
 	"os"
 )
 
 func main() {
-	o := parseOptions()
-	if len(os.Args) == 1 || *o.Help == true {
-		printHelpSheet()
+	o := controller.ParseOptions()
+
+	if *o.Help == true {
+		controller.PrintHelpSheet()
 		os.Exit(0)
 	}
 
-	if err := checkOptionSanity(o); err != nil {
+	if len(os.Args) == 1 {
+		fmt.Println("Info: use '--help' flag for additional options that can be used")
+	}
+
+	controller.SanitizeOptions(o)
+	if err := controller.ValidateOptions(o); err != nil {
 		fmt.Printf("Parse exception: %s", err)
 		os.Exit(1)
 	}
+
+	controller.Start(o)
 }

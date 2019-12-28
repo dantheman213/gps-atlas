@@ -1,4 +1,4 @@
-package main
+package controller
 
 import (
 	"errors"
@@ -25,7 +25,7 @@ type Options struct {
 	WriteNMEAFilePath *string
 }
 
-func parseOptions() *Options {
+func ParseOptions() *Options {
 	o := Options{}
 
 	o.AutoDetect = flag.Bool("autodetect", true, "Auto detect the serial port and baud rate for the connected GPS device. Disabled if baud rate or port is manually set.")
@@ -46,6 +46,17 @@ func parseOptions() *Options {
 
 	flag.Parse()
 
+	return &o
+}
+
+func PrintHelpSheet() {
+	fmt.Println("GPS Atlas / gps-usb-serial-reader")
+	fmt.Println("Auto-detect, plot, and map with common GPS USB serial devices")
+	fmt.Print("\nARGUMENTS:\n\n")
+	flag.PrintDefaults()
+}
+
+func SanitizeOptions(o *Options) {
 	// Disable auto-detect if either baud rate or port is set
 	if *o.AutoDetect && (*o.BaudRate > -1 || *o.SerialPort > -1) {
 		*o.AutoDetect = false
@@ -56,18 +67,9 @@ func parseOptions() *Options {
 		fmt.Println("Warning: no print or write option has been set; printing GPS coordinates")
 		*o.PrintGPSCoordsToCLI = true
 	}
-
-	return &o
 }
 
-func printHelpSheet() {
-	fmt.Println("GPS Atlas / gps-usb-serial-reader")
-	fmt.Println("Auto-detect, plot, and map with common GPS USB serial devices")
-	fmt.Print("\nARGUMENTS:\n\n")
-	flag.PrintDefaults()
-}
-
-func checkOptionSanity(o *Options) error {
+func ValidateOptions(o *Options) error {
 	if runtime.GOOS == "windows" && !*o.AutoDetect && (*o.SerialPort <= 0 || *o.SerialPort > 256) {
 		return errors.New("COM serial ports should be between 0-255")
 	}
