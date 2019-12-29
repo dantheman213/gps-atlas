@@ -11,7 +11,9 @@ type Options struct {
 	AutoDetect *bool
 	BaudRate *int
 	CalculateBearing *bool
-	CalculateSpeed *bool
+	CalculateSignalStrength *bool
+	CalculateSpeedInKPH *bool
+	CalculateSpeedInMPH *bool
 	Daemon *bool
 	Help *bool
 	PlotInterval *int
@@ -39,7 +41,9 @@ func ParseOptions() {
 	o.AutoDetect = flag.Bool("autodetect", true, "Auto detect the serial port and baud rate for the connected GPS device. Disabled if baud rate or port is manually set.")
 	o.BaudRate = flag.Int("baudrate", -1, "Set the baud rate for the serial port.")
 	o.CalculateBearing = flag.Bool("calculate-bearing", false, "Calculate directional bearing based on GPS position signals and print or write data, pair with other options.")
-	o.CalculateSpeed = flag.Bool("calculate-speed", false, "Calculate speed and print or write data, pair with other options.")
+	o.CalculateSignalStrength = flag.Bool("calculate-signal", false, "Calculate signal strength and accuracy; print or write data, pair with other options.")
+	o.CalculateSpeedInKPH = flag.Bool("calculate-speed", false, "Calculate speed in kilometers per hour and print or write data, pair with other options.")
+	o.CalculateSpeedInMPH = flag.Bool("calculate-speed", false, "Calculate speed in miles per hour and print or write data, pair with other options.")
 	o.Daemon = flag.Bool("daemon", false, "Run as a background task.")
 	o.Help = flag.Bool ("help", false, "Print help sheet.")
 	o.PlotInterval = flag.Int("interval", 30, "Set the plot interval (seconds) for returning a GPS location from device.")
