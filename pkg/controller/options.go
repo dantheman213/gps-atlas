@@ -22,6 +22,7 @@ type Options struct {
 	SerialPort *int
 	Silent *bool
 	Timeout *int
+	TimezoneLocal *bool
 	Verbose *bool
 	WriteCSVFilePath *string
 	WriteGPSCoordsFilePath *string
@@ -52,6 +53,7 @@ func ParseOptions() {
 	o.SerialPort = flag.Int("port", -1, "Set the serial port to connect.")
 	o.Silent = flag.Bool("silent", false, "No output will be sent to standard out. Cannot be used with flags that write to standard out.")
 	o.Timeout = flag.Int("timeout", 60, "Set the timeout (seconds) before disconnecting on error or inactivity.")
+	o.TimezoneLocal = flag.Bool("timezone-local", false, "Use local timezone instead of default UTC.")
 	o.Verbose = flag.Bool("verbose", false, "Extra information provided in standard out.")
 	o.WriteCSVFilePath = flag.String("write-csv", "", "Write timestamp, GPS coordinates, and NMEA message(s) for location to CSV file at path provided.")
 	o.WriteGPSCoordsFilePath = flag.String("write-gps", "", "Write raw GPS coordinates to file at path provided.")
