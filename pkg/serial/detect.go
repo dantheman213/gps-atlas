@@ -11,7 +11,7 @@ type GPSDevice struct {
 }
 
 func DetectGPSDevice() (*GPSDevice, error) {
-    log.Print("[info] auto detect starting...")
+    log.Println("[info] auto detect starting...")
 
 
 

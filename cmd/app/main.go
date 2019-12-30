@@ -9,6 +9,7 @@ import (
 func main() {
 	controller.ParseOptions()
 	o := controller.GetOptions()
+
 	if *o.Help == true {
 		controller.PrintHelpSheet()
 		os.Exit(0)
