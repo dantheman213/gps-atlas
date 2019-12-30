@@ -4,6 +4,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"log"
 	"runtime"
 )
 
@@ -79,7 +80,7 @@ func SanitizeOptions(o *Options) {
 
 	// Set a default option if no option is set
 	if !*o.PrintGPSCoordsToCLI && !*o.PrintNMEAToCLI && *o.WriteCSVFilePath == "" && *o.WriteGPSCoordsFilePath == "" && *o.WriteKMLFilePath == "" && *o.WriteNMEAFilePath == "" {
-		fmt.Println("Warning: no print or write option has been set; printing GPS coordinates")
+		log.Println("[warning] no print or write option has been set; printing GPS coordinates")
 		*o.PrintGPSCoordsToCLI = true
 	}
 }
@@ -98,7 +99,7 @@ func ValidateOptions(o *Options) error {
 	}
 
 	if *o.Silent && *o.Verbose {
-		return errors.New("cannot have both silent and verbose flags cannot both be set")
+		return errors.New("silent and verbose flags can't both be set")
 	}
 
 	if *o.Silent && (*o.PrintNMEAToCLI || *o.PrintGPSCoordsToCLI) {
