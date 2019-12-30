@@ -1,11 +1,21 @@
 package serial
 
 import (
+    "github.com/dantheman213/gps-usb-serial-reader/pkg/utility"
     libSerial "github.com/tarm/serial"
     "time"
 )
 
-func Connect(portName string, baudRate int, timeout int) (*libSerial.Port, error) {
+type GPSDevice struct {
+    PortNumber int
+    PortName string
+    BaudRate int
+    Port *libSerial.Port
+}
+
+var buf = make([]byte, 1024) // re-usable / better performance
+
+func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
     c := &libSerial.Config{
         Name: portName,
         Baud: baudRate,
@@ -13,5 +23,25 @@ func Connect(portName string, baudRate int, timeout int) (*libSerial.Port, error
         Size: 8,
     }
 
-    return libSerial.OpenPort(c)
+    p, err := libSerial.OpenPort(c)
+    if err != nil {
+        return nil, err
+    }
+    defer p.Close()
+
+    return &GPSDevice{
+        Port: p,
+        PortNumber: utility.ExtractIntFromStr(portName),
+        PortName:   portName,
+        BaudRate:   baudRate,
+    }, nil
+}
+
+func ReadSerialData(port *libSerial.Port) (string, error) {
+    n, err := port.Read(buf)
+    if err != nil {
+        return "", err
+    }
+
+    return string(buf[:n]), nil
 }
