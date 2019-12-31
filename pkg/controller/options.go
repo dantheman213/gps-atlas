@@ -68,7 +68,7 @@ func ParseOptions() {
 }
 
 func PrintHelpSheet() {
-	fmt.Println("GPS Atlas / gps-usb-serial-reader")
+	fmt.Println("GPS Atlas / gps-atlas")
 	fmt.Println("Auto-detect, plot, and map with common GPS USB serial devices")
 	fmt.Print("\nARGUMENTS:\n\n")
 	flag.PrintDefaults()

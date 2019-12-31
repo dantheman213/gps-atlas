@@ -1,7 +1,7 @@
 package controller
 
 import (
-    "github.com/dantheman213/gps-usb-serial-reader/pkg/serial"
+    "github.com/dantheman213/gps-atlas/pkg/serial"
     "log"
 )
 

@@ -1,7 +1,7 @@
 package serial
 
 import (
-    "github.com/dantheman213/gps-usb-serial-reader/pkg/utility"
+    "github.com/dantheman213/gps-atlas/pkg/utility"
     libSerial "github.com/tarm/serial"
     "time"
 )

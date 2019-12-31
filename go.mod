@@ -1,4 +1,4 @@
-module github.com/dantheman213/gps-usb-serial-reader
+module github.com/dantheman213/gps-atlas
 
 go 1.13
 
