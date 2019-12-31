@@ -13,6 +13,7 @@ type Options struct {
 	BaudRate *int
 	CalculateBearing *bool
 	CalculateSignalStrength *bool
+	CalculateSpeedInKnots *bool
 	CalculateSpeedInKPH *bool
 	CalculateSpeedInMPH *bool
 	Daemon *bool
@@ -44,6 +45,7 @@ func ParseOptions() {
 	o.BaudRate = flag.Int("baudrate", -1, "Set the baud rate for the serial port.")
 	o.CalculateBearing = flag.Bool("calculate-bearing", false, "Calculate directional bearing based on GPS position signals and print or write data, pair with other options.")
 	o.CalculateSignalStrength = flag.Bool("calculate-signal", false, "Calculate signal strength and accuracy; print or write data, pair with other options.")
+	o.CalculateSpeedInKnots = flag.Bool("calculate-speed-knots", false, "Calculate speed in knots (nautical miles per hour) and print or write data, pair with other options.")
 	o.CalculateSpeedInKPH = flag.Bool("calculate-speed-kph", false, "Calculate speed in kilometers per hour and print or write data, pair with other options.")
 	o.CalculateSpeedInMPH = flag.Bool("calculate-speed-mph", false, "Calculate speed in miles per hour and print or write data, pair with other options.")
 	o.Daemon = flag.Bool("daemon", false, "Run as a background task.")
