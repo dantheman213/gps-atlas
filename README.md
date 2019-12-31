@@ -6,7 +6,7 @@ Auto-detect many popular GPS devices with no external drivers or setup necessary
 
 * Read NMEA data (United States' GPS, Russia's GLONASS, or Europe's GNSS)
 * Calculate signal strength and quality
-* Calculate bearing and speed (MPH, KPH, knots)
+* Calculate bearing and speed (KPH, MPH, knots)
 * Receive latitude and longitude in decimal degrees (DD)
 * Receive satellite positional data
 * Automatically create waypoint data (KML)
