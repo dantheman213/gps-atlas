@@ -4,7 +4,7 @@ Auto-detect many popular GPS devices with no external drivers or setup necessary
 
 ## Features
 
-* Read NMEA GPS data
+* Read NMEA data (United States' GPS, Russia's GLONASS, or Europe's GNSS)
 * Calculate GPS signal strength and quality
 * Calculate bearing and speed
 * Receive latitude and longitude in decimal degrees (DD)
