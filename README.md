@@ -4,11 +4,11 @@ Auto-detect many popular GPS devices with no external drivers or setup necessary
 
 ## Features
 
-* Read NMEA GPS signals
-* Calculate GPS Signal Strength & Quality
+* Read NMEA GPS data
+* Calculate GPS signal strength and quality
 * Calculate bearing and speed
 * Receive latitude and longitude in decimal degrees (DD)
-* Receive Sattelite positional data
+* Receive satellite positional data
 * Automatically create waypoint data (KML)
 
 ...and more!
