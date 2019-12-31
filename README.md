@@ -2,7 +2,7 @@
 
 Auto-detect popular GPS devices using serial or USB-serial with no external drivers necessary. Plot, map and calculate bearing, speed, and more. Read NMEA GPS signals. Receive latitude and longitude as decimal degrees (DD) and much more for use in a variety of scientific, commercial, hobby, and personal applications.
 
-Available to download as a binary for your operating system.
+This is a console application available to download as a binary for your operating system.
 
 ## Getting Started
 
