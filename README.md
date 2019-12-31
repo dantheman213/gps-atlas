@@ -1,8 +1,27 @@
 # gps-atlas
 
-Auto-detect popular GPS devices using serial or USB-serial connections with no external drivers necessary. Plot and map locations with ease. Receive latitude and longitude in decimal degrees (DD), calculate bearing and speed, read NMEA GPS signals, get information about GPS satellites, and much more. Data can be received via stdout or file.
+Auto-detect many popular GPS devices with no external drivers or setup necessary. Plot and map locations with ease. View or export GPS data in a variety of file formats that can be imported into popular applications such as Google Earth.
+
+Receive latitude and longitude in decimal degrees (DD), calculate bearing and speed, read NMEA GPS signals, get information about GPS satellites, and more.
 
 This is a console application and is available to download as a binary for your operating system.
+
+## Supported Devices
+
+Here are some devices that are supported with no configuration at all. More devices are supported than this but these are some that I tested personally or read specifications and shoud be guaranteed to perform. Any device using NMEA protocol and connects through serial (via physical or virtual interface like USB) should work just fine.
+
+Feel free to submit a pull request to add additional confirmed working devices.
+
+### Devices
+
+* BS-708
+* VK-162
+* VK-172
+
+### Modules
+
+* u-blox 6
+* u-blox 7
 
 ## Getting Started
 
