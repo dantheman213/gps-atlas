@@ -74,45 +74,45 @@ func PrintHelpSheet() {
 	flag.PrintDefaults()
 }
 
-func SanitizeOptions(o *Options) {
+func SanitizeOptions() {
 	// Disable auto-detect if either baud rate or port is set
-	if *o.AutoDetect && (*o.BaudRate > -1 || *o.SerialPort > -1) {
-		*o.AutoDetect = false
+	if *opts.AutoDetect && (*opts.BaudRate > -1 || *opts.SerialPort > -1) {
+		*opts.AutoDetect = false
 	}
 
 	// Set a default option if no option is set
-	if !*o.PrintGPSCoordsToCLI && !*o.PrintNMEAToCLI && *o.WriteCSVFilePath == "" && *o.WriteGPSCoordsFilePath == "" && *o.WriteKMLFilePath == "" && *o.WriteNMEAFilePath == "" {
+	if !*opts.PrintGPSCoordsToCLI && !*opts.PrintNMEAToCLI && *opts.WriteCSVFilePath == "" && *opts.WriteGPSCoordsFilePath == "" && *opts.WriteKMLFilePath == "" && *opts.WriteNMEAFilePath == "" {
 		log.Println("[warning] no print or write option has been set; printing GPS coordinates")
-		*o.PrintGPSCoordsToCLI = true
+		*opts.PrintGPSCoordsToCLI = true
 	}
 }
 
-func ValidateOptions(o *Options) error {
-	if runtime.GOOS == "windows" && !*o.AutoDetect && (*o.SerialPort <= 0 || *o.SerialPort > 256) {
+func ValidateOptions() error {
+	if runtime.GOOS == "windows" && !*opts.AutoDetect && (*opts.SerialPort <= 0 || *opts.SerialPort > 256) {
 		return errors.New("COM serial ports should be between 0-255")
 	}
 
-	if !*o.AutoDetect && *o.SerialPort < 0 {
+	if !*opts.AutoDetect && *opts.SerialPort < 0 {
 		return errors.New("serial port must be valid")
 	}
 
-	if !*o.AutoDetect && *o.BaudRate <= 0 {
+	if !*opts.AutoDetect && *opts.BaudRate <= 0 {
 		return errors.New("baud rate must be valid")
 	}
 
-	if *o.Silent && *o.Verbose {
+	if *opts.Silent && *opts.Verbose {
 		return errors.New("silent and verbose flags can't both be set")
 	}
 
-	if *o.Silent && (*o.PrintNMEAToCLI || *o.PrintGPSCoordsToCLI) {
+	if *opts.Silent && (*opts.PrintNMEAToCLI || *opts.PrintGPSCoordsToCLI) {
 		return errors.New("can't be silent and paired with a flag that increases verbosity")
 	}
 
-	if *o.Timeout < 0 {
+	if *opts.Timeout < 0 {
 		return errors.New("timeout cannot be negative")
 	}
 
-	if *o.PlotInterval <= 0 {
+	if *opts.PlotInterval <= 0 {
 		return errors.New("plot interval cannot be less than 0")
 	}
 

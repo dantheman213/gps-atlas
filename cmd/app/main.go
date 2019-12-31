@@ -19,8 +19,8 @@ func main() {
 		log.Println("[info] use '--help' flag for additional options that can be used")
 	}
 
-	controller.SanitizeOptions(o)
-	if err := controller.ValidateOptions(o); err != nil {
+	controller.SanitizeOptions()
+	if err := controller.ValidateOptions(); err != nil {
 		log.Fatalf("[error] %s", err)
 	}
 
