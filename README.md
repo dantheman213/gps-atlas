@@ -1,8 +1,8 @@
 # gps-atlas
 
-Auto-detect popular GPS devices using serial or USB-serial with no external drivers necessary. Plot, map and calculate bearing, speed, and more. Read NMEA GPS signals. Receive latitude and longitude as decimal degrees (DD) and much more for use in a variety of scientific, commercial, hobby, and personal applications.
+Auto-detect popular GPS devices using serial or USB-serial connections with no external drivers necessary. Plot and map locations with ease. Receive latitude and longitude in decimal degrees (DD), calculate bearing and speed, read NMEA GPS signals, get information about GPS satellites, and much more. Data can be received via stdout or file.
 
-Available to download as a binary for your operating system.
+This is a console application and is available to download as a binary for your operating system.
 
 ## Getting Started
 
