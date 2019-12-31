@@ -13,13 +13,13 @@ type GPSDevice struct {
     Port *libSerial.Port
 }
 
-var buf = make([]byte, 1024) // re-usable / better performance
+var buf = make([]byte, 115200) // re-usable / better performance
 
 func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
     c := &libSerial.Config{
         Name: portName,
         Baud: baudRate,
-        ReadTimeout: time.Duration(timeout),
+        ReadTimeout: time.Duration(timeout) * time.Second,
         Size: 8,
     }
 
@@ -27,7 +27,6 @@ func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
     if err != nil {
         return nil, err
     }
-    defer p.Close()
 
     return &GPSDevice{
         Port: p,
