@@ -15,13 +15,24 @@ Auto-detect many popular GPS devices with no external drivers or setup necessary
 
 This is a console application and is available to download as a binary for your operating system.
 
-## Supported Devices
+## Supported Platforms
+
+Binaries will be provided for:
+
+* Linux (x86 & ARM)
+  - Raspberry Pi
+* MacOS
+* Windows
+
+Should run on just about any modern desktop or server OS. If your OS is not found here submit an issue and I'll see what I can do. You always have the option to compile it yourself, as well.
+
+## Supported GPS Devices
 
 Here are some devices that are supported with no configuration at all. More devices are supported than this but these are some that I tested personally or read specifications and shoud be guaranteed to perform. Any device using NMEA protocol and connects through serial (via physical or virtual interface like USB) should work just fine.
 
 Feel free to submit a pull request to add additional confirmed working devices.
 
-### Devices
+### USB Dongles
 
 * BS-708
 * VK-162
