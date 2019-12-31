@@ -2,7 +2,16 @@
 
 Auto-detect many popular GPS devices with no external drivers or setup necessary. Plot and map locations with ease. View or export GPS data in a variety of file formats that can be imported into popular applications such as Google Earth.
 
-Receive latitude and longitude in decimal degrees (DD), calculate bearing and speed, read NMEA GPS signals, get information about GPS satellites, and more.
+## Features
+
+* Read NMEA GPS signals
+* Calculate GPS Signal Strength & Quality
+* Calculate bearing and speed
+* Receive latitude and longitude in decimal degrees (DD)
+* Receive Sattelite positional data
+* Automatically create waypoint data (KML)
+
+...and more!
 
 This is a console application and is available to download as a binary for your operating system.
 
