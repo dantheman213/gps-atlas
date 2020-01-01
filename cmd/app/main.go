@@ -1,17 +1,25 @@
 package main
 
 import (
+	"fmt"
 	"github.com/dantheman213/gps-atlas/pkg/controller"
 	"log"
 	"os"
 )
+
+var Version string = "v0.0.0" // populated at build time
 
 func main() {
 	controller.ParseOptions()
 	o := controller.GetOptions()
 
 	if *o.Help == true {
-		controller.PrintHelpSheet()
+		controller.PrintHelpSheet(Version)
+		os.Exit(0)
+	}
+
+	if *o.Version == true {
+		fmt.Println(Version)
 		os.Exit(0)
 	}
 

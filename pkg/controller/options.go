@@ -27,6 +27,7 @@ type Options struct {
 	Timeout *int
 	TimezoneLocal *bool
 	Verbose *bool
+	Version *bool
 	WriteCSVFilePath *string
 	WriteGPSCoordsFilePath *string
 	WriteKMLFilePath *string
@@ -60,6 +61,7 @@ func ParseOptions() {
 	o.Timeout = flag.Int("timeout", 60, "Set the timeout (seconds) before disconnecting on error or inactivity.")
 	o.TimezoneLocal = flag.Bool("timezone-local", false, "Use local timezone instead of default UTC.")
 	o.Verbose = flag.Bool("verbose", false, "Extra information provided in stdout.")
+	o.Version = flag.Bool("version", false, "Get the application version.")
 	o.WriteCSVFilePath = flag.String("write-csv", "", "Write timestamp, GPS coordinates, NMEA message(s), and more to CSV file at path provided.")
 	o.WriteGPSCoordsFilePath = flag.String("write-gps", "", "Write raw GPS coordinates to file at path provided.")
 	o.WriteKMLFilePath = flag.String("write-kml", "", "Write Google Maps / Earth KML format as a waypoint workflow to file at path provided.")
@@ -69,8 +71,8 @@ func ParseOptions() {
 	opts = &o
 }
 
-func PrintHelpSheet() {
-	fmt.Println("GPS Atlas / gps-atlas")
+func PrintHelpSheet(version string) {
+	fmt.Printf("GPS Atlas %s\n", version)
 	fmt.Println("Auto-detect, plot, and map with common GPS USB serial devices")
 	fmt.Print("\nARGUMENTS:\n\n")
 	flag.PrintDefaults()

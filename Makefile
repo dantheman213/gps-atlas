@@ -1,18 +1,41 @@
-BASE_NAME = gps-atlas
-BIN_FILENAME = ""
+GPSATLAS_BASE_NAME = gps-atlas
 
-ifeq ($(OS),Windows_NT)
-	BIN_FILENAME = ${BASE_NAME}.exe
-else
-	BIN_FILENAME = ${BASE_NAME}
-endif
+.PHONY: all build build-linux build-linux-arm build-macos build-windows clean deps
 
-.PHONY: all build clean deps
-
-all: build
+all: build-linux build-linux-arm build-macos build-windows
 
 build:
-	CGO_ENABLED=0 GO111MODULE=on go build -installsuffix "static" -o bin/$(BIN_FILENAME) $$(find cmd/app/*.go)
+	CGO_ENABLED=0 \
+	GO111MODULE=on \
+	go build \
+	-installsuffix "static" \
+	-ldflags="-X 'main.Version=$$(cat version)'" \
+	-o $(GPSATLAS_BIN_PATH) \
+	$$(find cmd/app/*.go)
+
+build-linux:
+	export GOOS=linux && \
+	export GOARCH=amd64 && \
+	export GPSATLAS_BIN_PATH=bin/linux-x86/$(GPSATLAS_BASE_NAME) && \
+	$(MAKE) build
+
+build-linux-arm:
+	export GOOS=linux && \
+	export GOARCH=arm && \
+	export GPSATLAS_BIN_PATH=bin/linux-arm/$(GPSATLAS_BASE_NAME) && \
+	$(MAKE) build
+
+build-macos:
+	export GOOS=darwin && \
+	export GOARCH=amd64 && \
+	export GPSATLAS_BIN_PATH=bin/macos/$(GPSATLAS_BASE_NAME) && \
+	$(MAKE) build
+
+build-windows:
+	export GOOS=windows && \
+	export GOARCH=amd64 && \
+	export GPSATLAS_BIN_PATH=bin/windows/$(GPSATLAS_BASE_NAME).exe && \
+	$(MAKE) build
 
 clean:
 	@echo Cleaning bin/ directory... && \
