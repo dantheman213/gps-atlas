@@ -2,6 +2,7 @@ package gps
 
 import (
     "errors"
+    "fmt"
     "strings"
 )
 
@@ -21,6 +22,15 @@ func CheckForLocationInfo(sentenceNMEA string) (*GGA, error) {
     }
 
     return nil, nil
+}
+
+func GenerateGPSCoordsPretty(loc *Location) string {
+    str := ""
+    if loc != nil {
+        str = fmt.Sprintf("%f, %f\n", loc.Latitude, loc.Longitude)
+    }
+
+    return str
 }
 
 func ParseGPGGA(sentenceNMEA string) (*GGA, error) {
