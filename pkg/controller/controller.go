@@ -39,7 +39,7 @@ func Process(device *serial.GPSDevice) {
     if sentenceGGA != nil {
         loc, err = sentenceGGA.GetLocationPoint()
         if err != nil {
-            log.Printf("couldn't calculate coordinates from GGA sentence")
+            // log.Printf("couldn't calculate coordinates from GGA sentence")
             return
         }
     }

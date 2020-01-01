@@ -53,14 +53,12 @@ func DetectGPSDevice() (*GPSDevice, error) {
                         if len(str) > 7 {
                             // Got some data, is it in NMEA format?
                             messagePrefix := str[0:3]
-                            if messagePrefix[0:1] == "$" {
-                                if messagePrefix == "$GP" || messagePrefix == "$GL" || messagePrefix == "$GN" {
-                                    firstCommaPos := strings.Index(str, ",")
-                                    if firstCommaPos == 6 || firstCommaPos == 7 || firstCommaPos == 9 {
-                                        // ex: $GPGGA, $GPPTNL, $GPPFUGDP
-                                        log.Printf("[info] found GPS device at port: %s baud rate: %d", d.PortName, d.BaudRate)
-                                        return d, nil
-                                    }
+                            if messagePrefix == "$GP" || messagePrefix == "$GL" || messagePrefix == "$GN" {
+                                firstCommaPos := strings.Index(str, ",")
+                                if firstCommaPos == 6 || firstCommaPos == 7 || firstCommaPos == 9 {
+                                    // ex: $GPGGA, $GPPTNL, $GPPFUGDP
+                                    log.Printf("[info] found GPS device at port: %s baud rate: %d", d.PortName, d.BaudRate)
+                                    return d, nil
                                 }
                             }
                         }
