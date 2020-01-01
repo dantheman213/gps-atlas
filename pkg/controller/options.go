@@ -20,6 +20,7 @@ type Options struct {
 	Help *bool
 	PlotInterval *int
 	PrintGPSCoordsToCLI *bool
+	PrintGPSExtraInfoToCLI *bool
 	PrintNMEAToCLI *bool
 	SerialPort *int
 	Silent *bool
@@ -50,15 +51,16 @@ func ParseOptions() {
 	o.CalculateSpeedInMPH = flag.Bool("calculate-speed-mph", false, "Calculate speed in miles per hour and print or write data, pair with other options.")
 	o.Daemon = flag.Bool("daemon", false, "Run as a background task.")
 	o.Help = flag.Bool ("help", false, "Print help sheet.")
-	o.PlotInterval = flag.Int("interval", 30, "Set the plot interval (seconds) for returning a GPS location from device.")
-	o.PrintGPSCoordsToCLI = flag.Bool("print-gps", false, "Print the GPS coordinates to standard out.")
-	o.PrintNMEAToCLI = flag.Bool("print-nmea", false, "Print NMEA messages to standard out.")
+	o.PlotInterval = flag.Int("interval", 10, "Set the plot interval (seconds) for returning a GPS location from device.")
+	o.PrintGPSCoordsToCLI = flag.Bool("print-gps", false, "Print GPS coordinates to stdout.")
+	o.PrintGPSExtraInfoToCLI = flag.Bool("print-gps-extra", false, "Print additional GPS info to stdout.")
+	o.PrintNMEAToCLI = flag.Bool("print-nmea", false, "Print NMEA messages to stdout.")
 	o.SerialPort = flag.Int("port", -1, "Set the serial port to connect.")
-	o.Silent = flag.Bool("silent", false, "No output will be sent to standard out. Cannot be used with flags that write to standard out.")
+	o.Silent = flag.Bool("silent", false, "No output will be sent to stdout. Cannot be used with flags that write to stdout.")
 	o.Timeout = flag.Int("timeout", 60, "Set the timeout (seconds) before disconnecting on error or inactivity.")
 	o.TimezoneLocal = flag.Bool("timezone-local", false, "Use local timezone instead of default UTC.")
-	o.Verbose = flag.Bool("verbose", false, "Extra information provided in standard out.")
-	o.WriteCSVFilePath = flag.String("write-csv", "", "Write timestamp, GPS coordinates, and NMEA message(s) for location to CSV file at path provided.")
+	o.Verbose = flag.Bool("verbose", false, "Extra information provided in stdout.")
+	o.WriteCSVFilePath = flag.String("write-csv", "", "Write timestamp, GPS coordinates, NMEA message(s), and more to CSV file at path provided.")
 	o.WriteGPSCoordsFilePath = flag.String("write-gps", "", "Write raw GPS coordinates to file at path provided.")
 	o.WriteKMLFilePath = flag.String("write-kml", "", "Write Google Maps / Earth KML format as a waypoint workflow to file at path provided.")
 	o.WriteNMEAFilePath = flag.String("write-nmea", "", "Write raw NMEA messages to file at path provided.")

@@ -33,12 +33,12 @@ func (g *GGA) GetLongitude() (float32, error) {
 func (g *GGA) GetLocationPoint() (*Location, error) {
     lat, err := g.GetLatitude()
     if err != nil {
-        // TODO
+        return nil, err
     }
 
     long, err := g.GetLongitude()
     if err != nil {
-        // TODO
+        return nil, err
     }
 
     return &Location{
