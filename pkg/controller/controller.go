@@ -5,7 +5,10 @@ import (
     "github.com/dantheman213/gps-atlas/pkg/gps"
     "github.com/dantheman213/gps-atlas/pkg/serial"
     "log"
+    "time"
 )
+
+var nextPublish time.Time = time.Now().Add(time.Second * 4)
 
 func Start() {
     var d *serial.GPSDevice = nil
@@ -28,6 +31,13 @@ func Process(device *serial.GPSDevice) {
     if err != nil {
         log.Printf("couldn't read data stream")
         return
+    }
+
+    // wait until plot interval has elapsed
+    if nextPublish.After(time.Now()) {
+        return
+    } else {
+        nextPublish = time.Now().Add(time.Second * 4)
     }
 
     var loc *gps.Location = nil
