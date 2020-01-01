@@ -19,19 +19,23 @@ func Start() {
     }
 
     for true {
-        Process(d)
+        processData(d)
     }
 }
 
-func Process(device *serial.GPSDevice) {
+func processData(device *serial.GPSDevice) {
     sentenceNMEA, err := serial.ReadSerialData(device.Port)
     if err != nil {
         log.Printf("couldn't read data stream")
         return
     }
 
+    interpretNMEA(sentenceNMEA)
+}
+
+func interpretNMEA(sentence string) {
     var loc *gps.Location = nil
-    sentenceGGA, err := gps.CheckForLocationInfo(sentenceNMEA)
+    sentenceGGA, err := gps.CheckForLocationInfo(sentence)
     if err != nil {
         log.Printf("GGA sentence malformed")
         return
@@ -44,11 +48,35 @@ func Process(device *serial.GPSDevice) {
         }
     }
 
+    shareData(sentence, loc)
+}
+
+func shareData(nmea string, loc *gps.Location) {
     if *opts.PrintNMEAToCLI {
-        fmt.Print(sentenceNMEA)
+        fmt.Print(nmea)
+    }
+
+    if *opts.WriteNMEAFilePath != "" {
+        // TODO
     }
 
     if *opts.PrintGPSCoordsToCLI && loc != nil {
         fmt.Printf("%f, %f\n", loc.Latitude, loc.Longitude)
+    }
+
+    if *opts.PrintGPSExtraInfoToCLI {
+        // TODO
+    }
+
+    if *opts.WriteGPSCoordsFilePath != "" {
+        // TODO
+    }
+
+    if *opts.WriteCSVFilePath != "" {
+        // TODO
+    }
+
+    if *opts.WriteKMLFilePath != "" {
+        // TODO
     }
 }
