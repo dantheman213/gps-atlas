@@ -15,7 +15,7 @@ const (
 
 func ExtractIntFromStr(s string) int {
     re := regexp.MustCompile(`[^0-9.]`)
-    i, err := strconv.Atoi(re.ReplaceAllString("COM4", `$1`))
+    i, err := strconv.Atoi(re.ReplaceAllString(s, `$1`))
 
     if err != nil {
         log.Printf("[error] %s", err)
