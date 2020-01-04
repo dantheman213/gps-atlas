@@ -1,3 +1,5 @@
+github.com/dantheman213/serial v0.0.0-20200103023817-0ae63b07bcfb h1:bRV43UYu9AMW1mNAihapaV+8EhKX5nhqfbJ/5XE9qjA=
+github.com/dantheman213/serial v0.0.0-20200103023817-0ae63b07bcfb/go.mod h1:XnVOGoan4d0ECMcpma22etOZN7UL0HsMCr050Hz0DZA=
 github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07 h1:UyzmZLoiDWMRywV4DUYb9Fbt8uiOSooupjTq10vpvnU=
 github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07/go.mod h1:kDXzergiv9cbyO7IOYJZWg1U88JhDg3PB6klq9Hg2pA=
 golang.org/x/sys v0.0.0-20191228213918-04cbcbbfeed8 h1:JA8d3MPx/IToSyXZG/RhwYEtfrKO1Fxrqe8KrkiLXKM=

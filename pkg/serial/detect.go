@@ -2,14 +2,12 @@ package serial
 
 import (
     "errors"
-    "fmt"
+    libDSerial "github.com/dantheman213/serial"
     "log"
-    "runtime"
     "strings"
 )
 
 const (
-    autoDetectPortCount = 50
     dataDetectIterationCount = 100
     portDetectTimeout = 5
 )
@@ -19,26 +17,17 @@ var baudRates = [...]int { 115200, 38400, 19200, 9600, 4800 }
 func DetectGPSDevice() (*GPSDevice, error) {
     log.Println("[info] search and auto-detect GPS devices in progress...")
 
-    portPrefix := ""
-    switch runtime.GOOS {
-    case "linux":
-    case "darwin":
-        portPrefix = "/dev/ttyS"
-        break
-    case "windows":
-        portPrefix = "COM"
-        break
-    default:
-        portPrefix = ""
+    ports, err := libDSerial.ListPorts()
+    if err != nil {
+        return nil, err
     }
 
-    for currentPortNumber := 0; currentPortNumber < autoDetectPortCount; currentPortNumber++ {
-        currentPortName := fmt.Sprintf("%s%d", portPrefix, currentPortNumber)
+    for _, currentPort := range *ports {
         for bIndex := 0; bIndex < len(baudRates); bIndex++ {
             // TODO deal with MacOS serial ports with baudrate as suffix
             currentBaudRate := baudRates[bIndex]
-            log.Printf("[info] attemping to contact port %s with baud rate %d", currentPortName, currentBaudRate)
-            d, err := Connect(currentPortName, baudRates[bIndex], portDetectTimeout)
+            log.Printf("[info] attemping to contact port %s with baud rate %d", currentPort.PortName, currentBaudRate)
+            d, err := Connect(currentPort.PortName, baudRates[bIndex], portDetectTimeout)
 
             if err != nil {
                 log.Println("[info] couldn't establish a connection")
@@ -68,7 +57,7 @@ func DetectGPSDevice() (*GPSDevice, error) {
                 log.Println("[info] found data but doesn't appear to be NMEA... skipping...")
             }
 
-            log.Printf("[info] closing port %s", currentPortName)
+            log.Printf("[info] closing port %s", currentPort.PortName)
             _ = d.Port.Close()
         }
     }

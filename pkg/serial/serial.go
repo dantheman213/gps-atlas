@@ -4,7 +4,7 @@ import (
     "errors"
     "fmt"
     "github.com/dantheman213/gps-atlas/pkg/utility"
-    libSerial "github.com/tarm/serial"
+    libTSerial "github.com/tarm/serial"
     "strings"
     "time"
 )
@@ -13,20 +13,20 @@ type GPSDevice struct {
     PortNumber int
     PortName string
     BaudRate int
-    Port *libSerial.Port
+    Port *libTSerial.Port
 }
 
 var buf = make([]byte, 1024) // re-usable / better performance
 
 func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
-    c := &libSerial.Config{
+    c := &libTSerial.Config{
         Name: portName,
         Baud: baudRate,
         ReadTimeout: time.Duration(timeout) * time.Second,
         Size: 8,
     }
 
-    p, err := libSerial.OpenPort(c)
+    p, err := libTSerial.OpenPort(c)
     if err != nil {
         return nil, err
     }
@@ -39,7 +39,7 @@ func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
     }, nil
 }
 
-func ReadSerialData(port *libSerial.Port) (string, error) {
+func ReadSerialData(port *libTSerial.Port) (string, error) {
     str := ""
     for true {
         n, err := port.Read(buf)
