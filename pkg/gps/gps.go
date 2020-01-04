@@ -20,7 +20,11 @@ type LocationDMS struct {
     LongitudeDirection string
 }
 
-func CheckForLocationInfo(nmeaSentence string) (*nmea.GGA, error) {
+type GPS struct {
+    nmea *nmea.NMEA
+}
+
+func (g *GPS) CheckForLocationInfo(nmeaSentence string) (*nmea.GGA, error) {
     if strings.Index(nmeaSentence, "GGA") > -1 {
         message, err := nmea.ParseGGA(nmeaSentence)
         if err != nil {
@@ -33,7 +37,7 @@ func CheckForLocationInfo(nmeaSentence string) (*nmea.GGA, error) {
     return nil, nil
 }
 
-func GetGPSLocation(ggaMessage nmea.GGA) (*LocationDD, error) {
+func (g *GPS) GetGPSLocation(ggaMessage nmea.GGA) (*LocationDD, error) {
     lat, err := ggaMessage.GetLatitudeDD()
     if err != nil {
         return nil, err
@@ -50,7 +54,7 @@ func GetGPSLocation(ggaMessage nmea.GGA) (*LocationDD, error) {
     }, nil
 }
 
-func GetGPSLocationPretty(loc *LocationDD) string {
+func (g *GPS) GetGPSLocationPretty(loc *LocationDD) string {
     str := ""
     if loc != nil {
         str = fmt.Sprintf("%f, %f\n", loc.Latitude, loc.Longitude)
@@ -59,6 +63,6 @@ func GetGPSLocationPretty(loc *LocationDD) string {
     return str
 }
 
-func IngestNMEASentences(rawStr string) error {
+func (g *GPS) IngestNMEASentences(rawStr string) error {
     return nil
 }
