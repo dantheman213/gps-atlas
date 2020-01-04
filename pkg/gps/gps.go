@@ -1,30 +1,56 @@
 package gps
 
 import (
-    "errors"
     "fmt"
+    "github.com/dantheman213/gps-atlas/pkg/gps/nmea"
     "strings"
 )
 
-type Location struct {
+// Decimal Degrees
+type LocationDD struct {
     Latitude float32
     Longitude float32
 }
 
-func CheckForLocationInfo(sentenceNMEA string) (*GGA, error) {
-    if strings.Index(sentenceNMEA, "GGA") > -1 {
-        g, err := ParseGPGGA(sentenceNMEA)
+// Degrees Minutes Seconds
+type LocationDMS struct {
+    Latitude float32
+    LatitudeDirection string
+    Longitude float32
+    LongitudeDirection string
+}
+
+func CheckForLocationInfo(nmeaSentence string) (*nmea.GGA, error) {
+    if strings.Index(nmeaSentence, "GGA") > -1 {
+        message, err := nmea.ParseGGA(nmeaSentence)
         if err != nil {
             return nil, err
         } else {
-            return g, nil
+            return message, nil
         }
     }
 
     return nil, nil
 }
 
-func GenerateGPSCoordsPretty(loc *Location) string {
+func GetGPSLocation(ggaMessage nmea.GGA) (*LocationDD, error) {
+    lat, err := ggaMessage.GetLatitudeDD()
+    if err != nil {
+        return nil, err
+    }
+
+    long, err := ggaMessage.GetLongitudeDD()
+    if err != nil {
+        return nil, err
+    }
+
+    return &LocationDD{
+        Latitude:  lat,
+        Longitude: long,
+    }, nil
+}
+
+func GetGPSLocationPretty(loc *LocationDD) string {
     str := ""
     if loc != nil {
         str = fmt.Sprintf("%f, %f\n", loc.Latitude, loc.Longitude)
@@ -33,19 +59,6 @@ func GenerateGPSCoordsPretty(loc *Location) string {
     return str
 }
 
-func ParseGPGGA(sentenceNMEA string) (*GGA, error) {
-    tokens := strings.Split(sentenceNMEA, ",")
-    if len(tokens) >= 8 {
-        return &GGA{
-            fixTimestamp:       tokens[1],
-            latitude:           tokens[2],
-            latitudeDirection:  tokens[3],
-            longitude:          tokens[4],
-            longitudeDirection: tokens[5],
-            fixQuality:         tokens[6],
-            satellites:         tokens[7],
-        }, nil
-    }
-
-    return nil, errors.New("malformed NMEA sentence")
+func IngestNMEASentences(rawStr string) error {
+    return nil
 }

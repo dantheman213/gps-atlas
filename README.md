@@ -53,9 +53,11 @@ TODO
 
 * https://www.u-blox.com/sites/default/files/products/documents/u-blox7-V14_ReceiverDescriptionProtocolSpec_%28GPS.G7-SW-12001%29_Public.pdf
 
-* https://m2msupport.net/m2msupport/tutorial-for-nmea-gps/
+* http://www.scarpaz.com/Attic/Documents/GPS-NMEA.pdf
 
 * https://www.sparkfun.com/datasheets/GPS/NMEA%20Reference%20Manual1.pdf
+
+* https://m2msupport.net/m2msupport/tutorial-for-nmea-gps/
 
 * https://brandidowns.com/2018/08/05/decoding-nmea-sentences/
 
