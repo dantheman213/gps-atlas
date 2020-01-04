@@ -45,6 +45,7 @@ func DetectGPSDevice() (*GPSDevice, error) {
                 continue
             } else {
                 // Found a valid serial device to connect, now check if it's an NMEA compliant GPS serial device
+                // Check in multiple iterations to ensure not correct protocol
                 for commCount := 0; commCount < dataDetectIterationCount; commCount++ {
                     str, err := ReadSerialData(d.Port)
                     if err != nil {
@@ -52,8 +53,7 @@ func DetectGPSDevice() (*GPSDevice, error) {
                     } else {
                         if len(str) > 7 {
                             // Got some data, is it in NMEA format?
-                            messagePrefix := str[0:3]
-                            if messagePrefix == "$GP" || messagePrefix == "$GL" || messagePrefix == "$GN" {
+                            if str[0:2] == "$G" {
                                 firstCommaPos := strings.Index(str, ",")
                                 if firstCommaPos == 6 || firstCommaPos == 7 || firstCommaPos == 9 {
                                     // ex: $GPGGA, $GPPTNL, $GPPFUGDP

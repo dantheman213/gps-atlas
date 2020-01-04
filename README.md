@@ -60,3 +60,5 @@ TODO
 * https://brandidowns.com/2018/08/05/decoding-nmea-sentences/
 
 * https://stackoverflow.com/questions/3159260/gps-signal-strength-calculation
+
+* https://stackoverflow.com/questions/47028071/calculating-speed-from-set-of-longitude-and-latitudes-values-obtained-in-one-min
