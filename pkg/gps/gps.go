@@ -6,6 +6,17 @@ import (
     "strings"
 )
 
+const (
+    DirectionNorth = "N"
+    DirectionEast = "E"
+    DirectionSouth = "S"
+    DirectionWest = "W"
+    DirectionNorthEast = "NE"
+    DirectionNorthWest = "NW"
+    DirectionSouthEast = "SE"
+    DirectionSouthWest = "SW"
+)
+
 // Decimal Degrees
 type LocationDD struct {
     Latitude float32
