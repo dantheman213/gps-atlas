@@ -3,14 +3,12 @@ package serial
 import (
     "errors"
     "fmt"
-    "github.com/dantheman213/gps-atlas/pkg/utility"
     libTSerial "github.com/tarm/serial"
     "strings"
     "time"
 )
 
 type GPSDevice struct {
-    PortNumber int
     PortName   string
     BaudRate   int
     Port       *libTSerial.Port
@@ -33,7 +31,6 @@ func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
 
     return &GPSDevice{
         Port:       p,
-        PortNumber: utility.ExtractIntFromStr(portName),
         PortName:   portName,
         BaudRate:   baudRate,
     }, nil
