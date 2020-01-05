@@ -33,6 +33,7 @@ type Options struct {
     WriteJSONFilePath       *string
     WriteKMLFilePath        *string
     WriteNMEAFilePath       *string
+    WriteXMLFilePath        *string
 }
 
 var opts *Options
@@ -68,6 +69,7 @@ func ParseOptions() {
     o.WriteJSONFilePath = flag.String("write-json", "", "Write timestamp, GPS coordinates, NMEA message(s), and more to JSON file at path provided.")
     o.WriteKMLFilePath = flag.String("write-kml", "", "Write Google Maps / Earth KML format as a waypoint workflow to file at path provided.")
     o.WriteNMEAFilePath = flag.String("write-nmea", "", "Write raw NMEA messages to file at path provided.")
+    o.WriteXMLFilePath = flag.String("write-xml", "", "Write timestamp, GPS coordinates, NMEA message(s), and more to XML file at path provided.")
 
     flag.Parse()
     opts = &o
