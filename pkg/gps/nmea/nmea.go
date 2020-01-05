@@ -8,79 +8,77 @@ import (
 )
 
 type NMEA struct {
-    GGALocationFixData *GGA
-    RMCRecMinData *RMC
-    GSAOverallSatelliteData *GSA
+    GGALocationFixData       *GGA
+    RMCRecMinData            *RMC
+    GSAOverallSatelliteData  *GSA
     GSVDetailedSatelliteData *GSV
-    VTGCourseAndGroundSpeed *VTG
+    VTGCourseAndGroundSpeed  *VTG
 }
 
 type GGA struct {
-    Timestamp       string
-    Latitude           string
+    Timestamp          string
+    LatitudeDMS        string
     LatitudeDirection  string
-    Longitude          string
+    LongitudeDMS       string
     LongitudeDirection string
     FixQuality         string
     Satellites         string
-    Checksum string
+    Checksum           string
 }
 
 type RMC struct {
-    Timestamp string
-    LatitudeDMS string
-    LongitudeDMS string
+    Timestamp              string
     SpeedOverGroundInKnots string
-    TrackAngleInDegrees string
-    Date string
-    MagneticVariation string
-    Checksum string
+    TrackAngleInDegrees    string
+    Date                   string
+    MagneticVariation      string
+    Checksum               string
 }
 
 type GSA struct {
-    Mode1 string
-    Mode2 string
-    PRN string
-    PDOP string
-    HDOP string
-    VDOP string
+    Mode1    string
+    Mode2    string
+    PRN      string
+    PDOP     string
+    HDOP     string
+    VDOP     string
     Checksum string
 }
 
 // SV = Satellite Vehicle
 type GSV struct {
-    VisibleSVCount string
-    MessageNumber string
-    MessageCountInCycle string
-    SVPRN string
-    ElevationDegrees string
+    VisibleSVCount              string
+    MessageNumber               string
+    MessageCountInCycle         string
+    SVPRN                       string
+    ElevationDegrees            string
     AzimuthDegreesFromTrueNorth string
-    SNR string
-    Checksum string
+    SNR                         string
+    Checksum                    string
 }
 
 type VTG struct {
-    TrackMadeGoodDegreesTrue string
+    TrackMadeGoodDegreesTrue     string
     TrackMadeGoodDegreesMagnetic string
-    SpeedInKnots string
-    SpeedOverGroundKPH string
-    Checksum string
+    SpeedInKnots                 string
+    SpeedOverGroundKPH           string
+    Checksum                     string
 }
 
 func (g *GGA) GetLatitudeDD() (float32, error) {
-    return ParseDMSToDD(g.Latitude, g.LatitudeDirection)
+    return ParseDMSToDD(g.LatitudeDMS, g.LatitudeDirection)
 }
 
 func (g *GGA) GetLongitudeDD() (float32, error) {
-    return ParseDMSToDD(g.Longitude, g.LongitudeDirection)
+    return ParseDMSToDD(g.LongitudeDMS, g.LongitudeDirection)
 }
 
 func (g *GGA) GetLatitudeDMS() (string, string, error) {
-    return g.Latitude, g.LatitudeDirection, nil
+    return g.LatitudeDMS, g.LatitudeDirection, nil
 }
 
 func (g *GGA) GetLongitudeDMS() (string, string, error) {
-    return g.Longitude, g.LongitudeDirection, nil
+    return g.LongitudeDMS, g.LongitudeDirection, nil
 }
 
 // Parse DMS (Degrees Minutes Seconds to Decimal Degrees)
@@ -106,9 +104,9 @@ func ParseGGA(sentenceNMEA string) (*GGA, error) {
     if len(tokens) >= 8 {
         return &GGA{
             Timestamp:          tokens[1],
-            Latitude:           tokens[2],
+            LatitudeDMS:        tokens[2],
             LatitudeDirection:  tokens[3],
-            Longitude:          tokens[4],
+            LongitudeDMS:       tokens[4],
             LongitudeDirection: tokens[5],
             FixQuality:         tokens[6],
             Satellites:         tokens[7],

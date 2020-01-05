@@ -9,10 +9,10 @@ import (
 
 const (
     dataDetectIterationCount = 100
-    portDetectTimeout = 5
+    portDetectTimeout        = 5
 )
 
-var baudRates = [...]int { 115200, 38400, 19200, 9600, 4800 }
+var baudRates = [...]int{115200, 38400, 19200, 9600, 4800}
 
 func DetectGPSDevice() (*GPSDevice, error) {
     log.Println("[info] search and auto-detect GPS devices in progress...")

@@ -7,10 +7,10 @@ import (
 )
 
 const (
-    DirectionNorth = "N"
-    DirectionEast = "E"
-    DirectionSouth = "S"
-    DirectionWest = "W"
+    DirectionNorth     = "N"
+    DirectionEast      = "E"
+    DirectionSouth     = "S"
+    DirectionWest      = "W"
     DirectionNorthEast = "NE"
     DirectionNorthWest = "NW"
     DirectionSouthEast = "SE"
@@ -19,15 +19,15 @@ const (
 
 // Decimal Degrees
 type LocationDD struct {
-    Latitude float32
+    Latitude  float32
     Longitude float32
 }
 
 // Degrees Minutes Seconds
 type LocationDMS struct {
-    Latitude float32
-    LatitudeDirection string
-    Longitude float32
+    Latitude           float32
+    LatitudeDirection  string
+    Longitude          float32
     LongitudeDirection string
 }
 

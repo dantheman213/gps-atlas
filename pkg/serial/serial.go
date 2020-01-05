@@ -11,19 +11,19 @@ import (
 
 type GPSDevice struct {
     PortNumber int
-    PortName string
-    BaudRate int
-    Port *libTSerial.Port
+    PortName   string
+    BaudRate   int
+    Port       *libTSerial.Port
 }
 
 var buf = make([]byte, 1024) // re-usable / better performance
 
 func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
     c := &libTSerial.Config{
-        Name: portName,
-        Baud: baudRate,
+        Name:        portName,
+        Baud:        baudRate,
         ReadTimeout: time.Duration(timeout) * time.Second,
-        Size: 8,
+        Size:        8,
     }
 
     p, err := libTSerial.OpenPort(c)
@@ -32,7 +32,7 @@ func Connect(portName string, baudRate int, timeout int) (*GPSDevice, error) {
     }
 
     return &GPSDevice{
-        Port: p,
+        Port:       p,
         PortNumber: utility.ExtractIntFromStr(portName),
         PortName:   portName,
         BaudRate:   baudRate,
