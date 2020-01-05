@@ -30,6 +30,7 @@ type Options struct {
 	Version *bool
 	WriteCSVFilePath *string
 	WriteGPSCoordsFilePath *string
+	WriteJSONFilePath *string
 	WriteKMLFilePath *string
 	WriteNMEAFilePath *string
 }
@@ -64,6 +65,7 @@ func ParseOptions() {
 	o.Version = flag.Bool("version", false, "Get the application version.")
 	o.WriteCSVFilePath = flag.String("write-csv", "", "Write timestamp, GPS coordinates, NMEA message(s), and more to CSV file at path provided.")
 	o.WriteGPSCoordsFilePath = flag.String("write-gps", "", "Write raw GPS coordinates to file at path provided.")
+	o.WriteJSONFilePath = flag.String("write-json", "", "Write timestamp, GPS coordinates, NMEA message(s), and more to JSON file at path provided.")
 	o.WriteKMLFilePath = flag.String("write-kml", "", "Write Google Maps / Earth KML format as a waypoint workflow to file at path provided.")
 	o.WriteNMEAFilePath = flag.String("write-nmea", "", "Write raw NMEA messages to file at path provided.")
 
