@@ -2,9 +2,9 @@ package serial
 
 import (
     "errors"
+    "github.com/dantheman213/gps-atlas/pkg/gps/nmea"
     libDSerial "github.com/dantheman213/serial"
     "log"
-    "strings"
 )
 
 const (
@@ -40,16 +40,9 @@ func DetectGPSDevice() (*GPSDevice, error) {
                     if err != nil {
                         log.Printf("[info] %s", err)
                     } else {
-                        if len(str) > 7 {
-                            // Got some data, is it in NMEA format?
-                            if str[0:2] == "$G" {
-                                firstCommaPos := strings.Index(str, ",")
-                                if firstCommaPos == 6 || firstCommaPos == 7 || firstCommaPos == 9 {
-                                    // ex: $GPGGA, $GPPTNL, $GPPFUGDP
-                                    log.Printf("[info] found GPS device at port: %s baud rate: %d", d.PortName, d.BaudRate)
-                                    return d, nil
-                                }
-                            }
+                        if nmea.IsValidNMEASentence(str) {
+                            log.Printf("[info] found GPS device at port: %s baud rate: %d", d.PortName, d.BaudRate)
+                            return d, nil
                         }
                     }
                 }

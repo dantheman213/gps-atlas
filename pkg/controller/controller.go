@@ -2,11 +2,13 @@ package controller
 
 import (
     "bufio"
+    libGPS "github.com/dantheman213/gps-atlas/pkg/gps"
     "github.com/dantheman213/gps-atlas/pkg/serial"
     "log"
     "os"
 )
 
+var gps *libGPS.GPS
 var writeBufferCSV *bufio.Writer = nil
 var writeBufferGPS *bufio.Writer = nil
 var writeBufferKML *bufio.Writer = nil
@@ -24,15 +26,18 @@ func Start() {
         }
     }
 
+    gps = libGPS.NewGPS()
     for true {
         processData(d)
     }
 }
 
 func processData(device *serial.GPSDevice) {
-    _, err := serial.ReadSerialData(device.Port)
+    d, err := serial.ReadSerialData(device.Port)
     if err != nil {
         log.Printf("couldn't read data stream")
         return
     }
+
+    gps.IngestNMEASentences(d)
 }
