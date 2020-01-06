@@ -1,6 +1,7 @@
 package gps
 
 import (
+    "errors"
     "fmt"
     "github.com/dantheman213/gps-atlas/pkg/gps/nmea"
     "strings"
@@ -42,20 +43,24 @@ func NewGPS() *GPS {
 }
 
 func (g *GPS) GetGPSLocation() (*LocationDD, error) {
-    lat, err := g.nmea.GGALocationFixData.GetLatitudeDD()
-    if err != nil {
-        return nil, err
+    if g.nmea.GGALocationFixData != nil {
+        lat, err := g.nmea.GGALocationFixData.GetLatitudeDD()
+        if err != nil {
+            return nil, err
+        }
+
+        long, err := g.nmea.GGALocationFixData.GetLongitudeDD()
+        if err != nil {
+            return nil, err
+        }
+
+        return &LocationDD{
+            Latitude:  lat,
+            Longitude: long,
+        }, nil
     }
 
-    long, err := g.nmea.GGALocationFixData.GetLongitudeDD()
-    if err != nil {
-        return nil, err
-    }
-
-    return &LocationDD{
-        Latitude:  lat,
-        Longitude: long,
-    }, nil
+    return nil, errors.New("no GGA sentence has been ingested to determine location")
 }
 
 func (g *GPS) GetGPSLocationPretty() string {

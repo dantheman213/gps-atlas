@@ -4,7 +4,7 @@ import (
     "bufio"
 )
 
-func writeData(writer bufio.Writer, str string) error {
+func write(writer bufio.Writer, str string) error {
     if _, err := writer.WriteString(str); err != nil {
         return err
     }
