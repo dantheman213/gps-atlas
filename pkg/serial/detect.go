@@ -2,7 +2,7 @@ package serial
 
 import (
     "errors"
-    "github.com/dantheman213/gps-atlas/pkg/gps/nmea"
+    "github.com/dantheman213/gps/nmea"
     libDSerial "github.com/dantheman213/serial"
     "log"
 )

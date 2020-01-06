@@ -3,7 +3,7 @@ package controller
 import (
     "bufio"
     "fmt"
-    libGPS "github.com/dantheman213/gps-atlas/pkg/gps"
+    libGPS "github.com/dantheman213/gps"
     "github.com/dantheman213/gps-atlas/pkg/serial"
     "log"
     "os"

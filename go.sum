@@ -1,3 +1,5 @@
+github.com/dantheman213/gps v0.0.0-20200106030759-dc11adac4987 h1:rL2yh43uA1s0LDfamL3zn0Ae/sGJKiFWmmq2dYSAiPM=
+github.com/dantheman213/gps v0.0.0-20200106030759-dc11adac4987/go.mod h1:ToxqsvQvrS/g9+7XF+t4AahfzMOQe2W0CewHZ4XKTIo=
 github.com/dantheman213/serial v0.0.0-20200105024000-51f31c8efceb h1:eZETP6JZjvr9JWvHasMVz1UeBWXEevpEeAmBf+Dn1Hg=
 github.com/dantheman213/serial v0.0.0-20200105024000-51f31c8efceb/go.mod h1:XnVOGoan4d0ECMcpma22etOZN7UL0HsMCr050Hz0DZA=
 github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07 h1:UyzmZLoiDWMRywV4DUYb9Fbt8uiOSooupjTq10vpvnU=

@@ -47,6 +47,20 @@ Feel free to submit a pull request to add additional confirmed working devices.
 
 TODO
 
+## Libraries
+
+### GPS
+
+Cross-platform GPS NMEA library created to interpret data for this project:
+
+https://github.com/dantheman213/gps
+
+### Serial
+
+Cross-platform serial library created to assist with connecting to serial ports for this project:
+
+https://github.com/dantheman213/serial
+
 ## Reference
 
 * https://www.gpsinformation.org/dale/nmea.htm
