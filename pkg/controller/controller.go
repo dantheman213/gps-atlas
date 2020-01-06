@@ -51,9 +51,9 @@ func displayData(sentences string) {
         fmt.Print(sentences)
     }
 
-    c := gps.GetGPSLocationPretty()
+    c := gps.GetGPSLocationInDDPretty()
     if *opts.PrintGPSCoordsToCLI && c != "" {
-        fmt.Print(c)
+        fmt.Print(fmt.Sprintf("%s\n", c))
     }
 
     if *opts.PrintGPSExtraInfoToCLI {
@@ -79,7 +79,7 @@ func writeData(sentences string) {
         }
     }
 
-    c := gps.GetGPSLocationPretty()
+    c := gps.GetGPSLocationInDDPretty()
     if *opts.WriteGPSCoordsFilePath != "" && c != "" {
         if writeBufferGPS == nil {
             log.Printf("[info] opening and writing GPS coordinate data to file: %s", *opts.WriteGPSCoordsFilePath)
@@ -92,7 +92,7 @@ func writeData(sentences string) {
             writeBufferGPS = bufio.NewWriter(f)
         }
 
-        if err := write(*writeBufferGPS, c); err != nil {
+        if err := write(*writeBufferGPS, fmt.Sprintf("%s\n", c)); err != nil {
             log.Fatalf("[error] %s", err)
         }
     }
