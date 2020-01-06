@@ -106,6 +106,7 @@ func (g *GPS) IngestNMEASentences(sentences string) {
                 d, err := nmea.ParseGGA(item)
                 if err != nil {
                     // TODO
+                    return
                 }
                 g.nmea.GGALocationFixData = d
                 break
@@ -113,6 +114,7 @@ func (g *GPS) IngestNMEASentences(sentences string) {
                 d, err := nmea.ParseRMC(item)
                 if err != nil {
                     // TODO
+                    return
                 }
                 g.nmea.RMCRecMinData = d
                 break
@@ -120,6 +122,7 @@ func (g *GPS) IngestNMEASentences(sentences string) {
                 d, err := nmea.ParseGSA(item)
                 if err != nil {
                     // TODO
+                    return
                 }
                 g.nmea.GSAOverallSatelliteData = d
                 break
@@ -130,6 +133,7 @@ func (g *GPS) IngestNMEASentences(sentences string) {
                 d, err := nmea.ParseVTG(item)
                 if err != nil {
                     // TODO
+                    return
                 }
                 g.nmea.VTGCourseAndGroundSpeed = d
                 break
