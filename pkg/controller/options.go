@@ -78,7 +78,12 @@ func ParseOptions() {
 func PrintHelpSheet(version string) {
     fmt.Printf("GPS Atlas %s\n", version)
     fmt.Println("Auto-detect, plot, and map with common GPS USB serial devices")
-    fmt.Print("\nARGUMENTS:\n\n")
+    s := ""
+    if runtime.GOOS == "windows" {
+        s = ".exe"
+    }
+    fmt.Printf("\nUsage: gps-atlas%s [OPTIONS]...\n", s)
+    fmt.Print("\nOPTIONS:\n\n")
     flag.PrintDefaults()
 }
 

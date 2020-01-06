@@ -45,6 +45,67 @@ Feel free to submit a pull request to add additional confirmed working devices.
 
 ## Getting Started
 
+### Program Options
+
+```
+Usage: gps-atlas [OPTIONS]...
+
+OPTIONS:
+
+  -autodetect
+        Auto detect the serial port and baud rate for the connected GPS device. Disabled if baud rate or port is manually set. (default true)
+  -baudrate int
+        Set the baud rate for the serial port. (default -1)
+  -calculate-bearing
+        Calculate directional bearing based on GPS position signals and print or write data, pair with other options.
+  -calculate-signal
+        Calculate signal strength and accuracy; print or write data, pair with other options.
+  -calculate-speed-knots
+        Calculate speed in knots (nautical miles per hour) and print or write data, pair with other options.
+  -calculate-speed-kph
+        Calculate speed in kilometers per hour and print or write data, pair with other options.
+  -calculate-speed-mph
+        Calculate speed in miles per hour and print or write data, pair with other options.
+  -daemon
+        Run as a background task.
+  -help
+        Print help sheet.
+  -interval int
+        Set the plot interval (seconds) for returning a GPS location from device. (default 10)
+  -port int
+        Set the serial port to connect. (default -1)
+  -print-gps
+        Print GPS coordinates to stdout.
+  -print-gps-extra
+        Print additional GPS info to stdout.
+  -print-nmea
+        Print NMEA messages to stdout.
+  -silent
+        No output will be sent to stdout. Cannot be used with flags that write to stdout.
+  -timeout int
+        Set the timeout (seconds) before disconnecting on error or inactivity. (default 60)
+  -timezone-local
+        Use local timezone instead of default UTC.
+  -verbose
+        Extra information provided in stdout.
+  -version
+        Get the application version.
+  -write-csv string
+        Write timestamp, GPS coordinates, NMEA message(s), and more to CSV file at path provided.
+  -write-gps string
+        Write raw GPS coordinates to file at path provided.
+  -write-json string
+        Write timestamp, GPS coordinates, NMEA message(s), and more to JSON file at path provided.
+  -write-kml string
+        Write Google Maps / Earth KML format as a waypoint workflow to file at path provided.
+  -write-nmea string
+        Write raw NMEA messages to file at path provided.
+  -write-xml string
+        Write timestamp, GPS coordinates, NMEA message(s), and more to XML file at path provided.
+```
+
+## Development
+
 TODO
 
 ## Libraries
