@@ -1,7 +1,7 @@
 github.com/dantheman213/gps v0.0.0-20200106192531-86184c1e9a8b h1:B/uFl5+fmstz5pZnG6yS8/2yRRDULhG3sc49EnJ3SN4=
 github.com/dantheman213/gps v0.0.0-20200106192531-86184c1e9a8b/go.mod h1:ToxqsvQvrS/g9+7XF+t4AahfzMOQe2W0CewHZ4XKTIo=
-github.com/dantheman213/serial v0.0.0-20200105024000-51f31c8efceb h1:eZETP6JZjvr9JWvHasMVz1UeBWXEevpEeAmBf+Dn1Hg=
-github.com/dantheman213/serial v0.0.0-20200105024000-51f31c8efceb/go.mod h1:XnVOGoan4d0ECMcpma22etOZN7UL0HsMCr050Hz0DZA=
+github.com/dantheman213/serial v0.0.0-20200107023037-dad1e3436910 h1:XlvmUjraegSDXp+IdnLpxVdXb7HELGepkTh/0/d/VPo=
+github.com/dantheman213/serial v0.0.0-20200107023037-dad1e3436910/go.mod h1:XnVOGoan4d0ECMcpma22etOZN7UL0HsMCr050Hz0DZA=
 github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07 h1:UyzmZLoiDWMRywV4DUYb9Fbt8uiOSooupjTq10vpvnU=
 github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07/go.mod h1:kDXzergiv9cbyO7IOYJZWg1U88JhDg3PB6klq9Hg2pA=
 golang.org/x/sys v0.0.0-20191228213918-04cbcbbfeed8 h1:JA8d3MPx/IToSyXZG/RhwYEtfrKO1Fxrqe8KrkiLXKM=
