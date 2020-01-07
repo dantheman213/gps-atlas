@@ -8,8 +8,8 @@ import (
 )
 
 const (
-    dataDetectIterationCount = 100
-    portDetectTimeout        = 5
+    dataDetectIterationCount = 10
+    portDetectTimeout        = 2
 )
 
 var baudRates = [...]int{115200, 38400, 19200, 9600, 4800}
@@ -38,6 +38,9 @@ func DetectGPSDevice() (*GPSDevice, error) {
                 for commCount := 0; commCount < dataDetectIterationCount; commCount++ {
                     str, err := ReadSerialData(d.Port)
                     if err != nil {
+                        if err.Error() == "EOF" {
+                            continue
+                        }
                         log.Printf("[info] %s", err)
                     } else {
                         if nmea.IsValidNMEASentence(str) {
