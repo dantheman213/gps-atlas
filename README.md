@@ -108,6 +108,44 @@ OPTIONS:
 
 TODO
 
+### Prerequisites
+
+#### 1. Golang 1.13
+
+Install Golang by downloading the installer from their website.
+
+#### 2. Make
+
+##### MacOS
+
+The best way is to install the Apple Developer Tools.
+
+##### Windows
+
+It is recommended to install `choco` utility and run the following from command prompt:
+
+    choco install make
+
+### Building Binary
+
+Download dependencies by running:
+
+    make deps
+
+Now you can build the binary.
+
+#### Linux
+
+    make build-linux
+
+#### MacOS
+
+    make build-macos
+
+#### Windows
+
+    make build-windows
+
 ## Libraries
 
 ### GPS
