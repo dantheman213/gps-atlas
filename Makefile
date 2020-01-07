@@ -5,25 +5,25 @@ GPSATLAS_BASE_NAME = gps-atlas
 build-linux:
 	export GOOS=linux && \
 	export GOARCH=amd64 && \
-	export GPSATLAS_BIN_PATH=bin/linux-x86/$(GPSATLAS_BASE_NAME) && \
+	export GPSATLAS_BIN_PATH=bin/$(GPSATLAS_BASE_NAME)-linux-amd64-$$(cat version) && \
 	$(MAKE) build-target
 
 build-linux-arm:
 	export GOOS=linux && \
 	export GOARCH=arm && \
-	export GPSATLAS_BIN_PATH=bin/linux-arm/$(GPSATLAS_BASE_NAME) && \
+	export GPSATLAS_BIN_PATH=bin/$(GPSATLAS_BASE_NAME)-linux-arm-$$(cat version) && \
 	$(MAKE) build-target
 
 build-macos:
 	export GOOS=darwin && \
 	export GOARCH=amd64 && \
-	export GPSATLAS_BIN_PATH=bin/macos/$(GPSATLAS_BASE_NAME) && \
+	export GPSATLAS_BIN_PATH=bin/$(GPSATLAS_BASE_NAME)-macos-amd64-$$(cat version) && \
 	$(MAKE) build-target
 
 build-windows:
 	export GOOS=windows && \
 	export GOARCH=amd64 && \
-	export GPSATLAS_BIN_PATH=bin/windows/$(GPSATLAS_BASE_NAME).exe && \
+	export GPSATLAS_BIN_PATH=bin/$(GPSATLAS_BASE_NAME)-windows-amd64-$$(cat version).exe && \
 	$(MAKE) build-target
 
 build-target:
